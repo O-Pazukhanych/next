@@ -1,13 +1,14 @@
+import {PlanetsResponse, PlanetResponse} from "@/type/planets";
+
 class PlanetsApi {
-    async getAllPlanets() {
-        const response = await fetch('https://swapi.dev/api/planets/', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
-        const data = await response.json();
-        return Promise.resolve(data);
+    getPlanets(): Promise<PlanetsResponse> {
+        return fetch('https://www.swapi.tech/api/planets/')
+            .then((res) => res.json());
+    }
+
+    getPlanet(id: number): Promise<PlanetResponse> {
+        return fetch(`https://www.swapi.tech/api/planets/${id}/`)
+            .then((res) => res.json());
     }
 }
 
